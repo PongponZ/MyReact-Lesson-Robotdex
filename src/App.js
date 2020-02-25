@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import './App.css';
 import { CardList } from './Components/Card-list/Card-list.Component';
+import { SeachBox } from './Components/Search-box/Seach-box.Component';
 
 class App extends Component{
   constructor(){
@@ -18,13 +19,13 @@ class App extends Component{
   }
 
   render(){
+    const {marvel ,searchField} = this.state
+    const filterMarvel = marvel.filter(marvel => marvel.name.toLowerCase().includes(searchField.toLowerCase()))
     return(
-      <div>
-
-          <input type = "search" placeholder = "Search Name" 
-            onChange ={e => this.setState({searchField: e.target.value})}/>
-
-          <CardList marvel = {this.state.marvel}/>
+      <div className ='App'>
+          <h1>Marvel RobotDex</h1>
+          <SeachBox placeholder = "Seach Box" handlechanged = {e => this.setState({searchField: e.target.value})}/>
+          <CardList marvel = {filterMarvel}/>
           
       </div>
     )
