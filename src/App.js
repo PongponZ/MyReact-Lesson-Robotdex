@@ -1,17 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react';
 import './App.css';
+import { CardList } from './Components/Card-list/Card-list.Component';
 
+class App extends Component{
+  constructor(){
+    super();
+    this.state = {
+        marvel:[],
+        searchField:""
+    };
+  }
 
-let mycss = {
-    fontSize: 25
-};
-function App() {
-  return (
-    <div>
-      <h1 style = {mycss}>This is My first React App</h1>
-    </div>
-  );
+  componentDidMount(){
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(Response => Response.json())
+    .then(users => this.setState({marvel:users}))
+  }
+
+  render(){
+    return(
+      <div>
+
+          <input type = "search" placeholder = "Search Name" 
+            onChange ={e => this.setState({searchField: e.target.value})}/>
+
+          <CardList marvel = {this.state.marvel}/>
+          
+      </div>
+    )
+  }
 }
 
 export default App;
