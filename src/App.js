@@ -23,7 +23,7 @@ class App extends Component{
     const filterMarvel = marvel.filter(marvel => marvel.name.toLowerCase().includes(searchField.toLowerCase()))
     return(
       <div className ='App'>
-          <h1>Marvel RobotDex</h1>
+          <h1>My Robot Dex</h1>
           <SeachBox placeholder = "Seach Box" handlechanged = {e => this.setState({searchField: e.target.value})}/>
           <CardList marvel = {filterMarvel}/>
           
